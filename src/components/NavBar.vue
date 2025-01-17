@@ -9,11 +9,3 @@
     </ul>
   </nav>
 </template>
-
-<style>
-nav ul {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-}
-</style>
