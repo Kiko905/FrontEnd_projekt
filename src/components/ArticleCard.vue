@@ -7,7 +7,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   props: {
     title: String,
     summary: String,
@@ -17,7 +19,7 @@ export default {
       alert('Opening article...');
     },
   },
-};
+});
 </script>
 
 <style>
