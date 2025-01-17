@@ -1,8 +1,9 @@
 <template>
   <div class="fitness-plan">
+    <img :src="image" alt="Plan Image" class="plan-image" />
     <h3>{{ title }}</h3>
     <p>{{ description }}</p>
-    <button @click="selectPlan">Select Plan</button>
+    <p><strong>Price:</strong> {{ price }}</p>
   </div>
 </template>
 
@@ -13,20 +14,8 @@ export default defineComponent({
   props: {
     title: String,
     description: String,
-  },
-  methods: {
-    selectPlan() {
-      alert(`You have selected: ${this.title}`);
-    },
+    price: String,
+    image: String,
   },
 });
 </script>
-
-<style>
-.fitness-plan {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-</style>
