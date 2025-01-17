@@ -6,6 +6,7 @@ import ArticlesView from '../views/ArticlesView.vue';
 import PlansView from '../views/PlansView.vue';
 import ProfileView from '../views/ProfileView.vue';
 import ContactView from '../views/ContactView.vue';
+import ArticleDescriptionView from '../views/ArticleDescriptionView.vue';
 
 const routes = [
   {
@@ -34,6 +35,11 @@ const routes = [
     name: 'Contact',
     component: ContactView,
   },
+  {
+    path: '/articles/:title',
+    name: 'ArticleDescription',
+    component: ArticleDescriptionView
+  }
 ];
 
 const router = createRouter({

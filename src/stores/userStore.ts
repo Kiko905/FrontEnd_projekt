@@ -13,7 +13,7 @@ interface User {
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    users: [] as User[],
+    users: JSON.parse(localStorage.getItem('users') || '[]') as User[],
   }),
   actions: {
     updateUser(index: number, newName: string, newAge: number, newWeight: number, newHeight: number) {
@@ -22,12 +22,14 @@ export const useUserStore = defineStore('user', {
         this.users[index].age = newAge;
         this.users[index].weight = newWeight;
         this.users[index].height = newHeight;
+        this.saveUsers();
       }
     },
     incrementProgress(index: number) {
       if (index >= 0 && index < this.users.length) {
         if (this.users[index].progress.completedDays < this.users[index].progress.totalDays) {
           this.users[index].progress.completedDays++;
+          this.saveUsers();
         }
       }
     },
@@ -42,6 +44,16 @@ export const useUserStore = defineStore('user', {
           totalDays: 30,
         },
       });
+      this.saveUsers();
+    },
+    removeUser(index: number) {
+      if (index >= 0 && index < this.users.length) {
+        this.users.splice(index, 1);
+        this.saveUsers();
+      }
+    },
+    saveUsers() {
+      localStorage.setItem('users', JSON.stringify(this.users));
     },
   },
 });
