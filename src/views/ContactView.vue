@@ -17,21 +17,22 @@
 </template>
 
 <script lang="ts">
-import { reactive } from 'vue';
+import { defineComponent } from 'vue';
 
-export default {
-  setup() {
-    const formData = reactive({
-      name: '',
-      email: '',
-      message: '',
-    });
-
-    const submitForm = () => {
-      alert(`Thank you, ${formData.name}. Your message has been sent!`);
+export default defineComponent({
+  data() {
+    return {
+      formData: {
+        name: '',
+        email: '',
+        message: '',
+      },
     };
-
-    return { formData, submitForm };
   },
-};
+  methods: {
+    submitForm() {
+      alert(`Thank you, ${this.formData.name}. Your message has been sent!`);
+    },
+  },
+});
 </script>

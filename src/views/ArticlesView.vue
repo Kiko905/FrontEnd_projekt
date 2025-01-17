@@ -6,10 +6,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import ArticleCard from '../components/ArticleCard.vue';
 
-export default {
+export default defineComponent({
   components: { ArticleCard },
-};
-</script>
+});
+</script>s

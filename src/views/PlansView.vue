@@ -13,10 +13,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import FitnessPlan from '../components/FitnessPlan.vue';
 
-export default {
+export default defineComponent({
   components: { FitnessPlan },
-};
+});
 </script>
