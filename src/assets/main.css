@@ -1,26 +1,33 @@
 /* General styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #333;
-  background-color: #f0f8ff; /* Light blue background */
+  background-color: #f8f9fa; /* Light gray background */
 }
 
 h1, h2, h3 {
-  color: #1e90ff; /* Dodger blue */
+  color: #1976d2; /* Vuetify primary color */
 }
 
 button {
-  background-color: #1e90ff; /* Dodger blue */
+  background-color: #1976d2; /* Vuetify primary color */
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 button:hover {
-  background-color: #1c86ee; /* Slightly darker blue */
+  background-color: #1565c0; /* Slightly darker blue */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+button:active {
+  background-color: #0d47a1; /* Even darker blue */
+  transform: translateY(0); /* Remove lift effect */
 }
 
 /* NavBar styles */
@@ -31,7 +38,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #1e90ff; /* Dodger blue */
+  color: #1976d2; /* Vuetify primary color */
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -39,25 +46,50 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #1c86ee; /* Slightly darker blue */
+  background-color: #e3f2fd; /* Light blue background */
 }
 
 /* FitnessPlan styles */
 .fitness-plan {
-  border: 1px solid #1e90ff; /* Dodger blue */
+  border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
-  background-color: #f0f8ff; /* Light blue background */
+  flex: 1;
+  max-width: 300px; /* Limit the width to make it look more like a card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a card effect */
+  text-align: center; /* Center the text */
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.fitness-plan:hover {
+  transform: translateY(-5px); /* Slight lift effect */
+}
+
+.plan-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px 5px 0 0; /* Rounded corners for the top of the image */
+}
+
+.fitness-plan h3 {
+  margin-top: 0.5rem;
 }
 
 /* ArticleCard styles */
 .article-card {
-  border: 1px solid #1e90ff; /* Dodger blue */
+  border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 5px;
   margin-bottom: 1rem;
-  background-color: #f0f8ff; /* Light blue background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a card effect */
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.article-card:hover {
+  transform: translateY(-5px); /* Slight lift effect */
 }
 
 /* TableView styles */
@@ -67,18 +99,12 @@ table {
 }
 
 table, th, td {
-  border: 1px solid #1e90ff; /* Dodger blue */
+  border: 1px solid #ddd;
 }
 
 th, td {
   padding: 8px;
   text-align: left;
-  background-color: #f0f8ff; /* Light blue background */
-}
-
-th {
-  background-color: #1e90ff; /* Dodger blue */
-  color: white;
 }
 
 /* Form styles */
@@ -89,15 +115,47 @@ form {
 }
 
 form label {
-  color: #1e90ff; /* Dodger blue */
+  color: #1976d2; /* Vuetify primary color */
 }
 
 form input, form textarea {
-  border: 1px solid #1e90ff; /* Dodger blue */
+  border: 1px solid #1976d2; /* Vuetify primary color */
   padding: 10px;
   border-radius: 5px;
 }
 
 form button {
   align-self: flex-start;
+}
+
+/* Centered text */
+.centered {
+  text-align: center;
+}
+
+/* Plans container */
+.plans-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center; /* Center the cards horizontally */
+  flex-wrap: wrap; /* Allow the cards to wrap to the next line if needed */
+}
+
+/* User details */
+.user-details {
+  margin-top: 2rem;
+}
+
+.user-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.user-details li {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a card effect */
 }
