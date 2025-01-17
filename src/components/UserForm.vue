@@ -26,6 +26,9 @@
           <strong>Weight:</strong> {{ user.weight }}<br>
           <strong>Height:</strong> {{ user.height }}<br>
           <strong>Progress:</strong> {{ user.progress.completedDays }} / {{ user.progress.totalDays }} days
+          <button @click="incrementUserProgress(index)">Increment Progress</button>
+          <button @click="editUser(index)">Edit</button>
+          <button @click="removeUser(index)">Remove</button>
         </li>
       </ul>
     </div>
@@ -46,67 +49,41 @@ export default defineComponent({
         weight: 0,
         height: 0,
       },
+      editIndex: -1,
     };
   },
   methods: {
     submitForm() {
-      this.userStore.addUser(this.formData.name, this.formData.age, this.formData.weight, this.formData.height);
-      alert('User added successfully!');
+      if (this.editIndex === -1) {
+        this.userStore.addUser(this.formData.name, this.formData.age, this.formData.weight, this.formData.height);
+        alert('User added successfully!');
+      } else {
+        this.userStore.updateUser(this.editIndex, this.formData.name, this.formData.age, this.formData.weight, this.formData.height);
+        alert('User updated successfully!');
+        this.editIndex = -1;
+      }
+      this.resetForm();
+    },
+    incrementUserProgress(index: number) {
+      this.userStore.incrementProgress(index);
+    },
+    editUser(index: number) {
+      const user = this.userStore.users[index];
+      this.formData.name = user.name;
+      this.formData.age = user.age;
+      this.formData.weight = user.weight;
+      this.formData.height = user.height;
+      this.editIndex = index;
+    },
+    removeUser(index: number) {
+      this.userStore.removeUser(index);
+    },
+    resetForm() {
+      this.formData.name = '';
+      this.formData.age = 0;
+      this.formData.weight = 0;
+      this.formData.height = 0;
     },
   },
 });
 </script>
-
-<style>
-.user-form {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-
-.user-form label {
-  display: block;
-  margin-top: 0.5rem;
-}
-
-.user-form input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.user-form button {
-  margin-top: 1rem;
-  background-color: #1e90ff; /* Dodger blue */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.user-form button:hover {
-  background-color: #1c86ee; /* Slightly darker blue */
-}
-
-.user-details {
-  margin-top: 2rem;
-}
-
-.user-details ul {
-  list-style: none;
-  padding: 0;
-}
-
-.user-details li {
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 5px;
-  background-color: #f0f8ff; /* Light blue background */
-}
-</style>
