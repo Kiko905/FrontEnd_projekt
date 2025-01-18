@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <h1>Your Profile</h1>
-    <UserForm />
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Your Profile</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <UserForm />
+      </div>
+    </div>
   </div>
 </template>
 

@@ -1,22 +1,20 @@
 <template>
-  <div class="article-card">
-    <h3>{{ title }}</h3>
-    <p>{{ summary }}</p>
-    <button @click="readMore">Read More</button>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ title }}</h5>
+      <p class="card-text">{{ summary }}</p>
+      <button class="btn btn-primary" @click="readMore">Read More</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {
     title: String,
     summary: String,
-  },
-  data() {
-    return {};
   },
   methods: {
     readMore() {

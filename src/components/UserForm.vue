@@ -1,34 +1,56 @@
 <template>
   <div class="user-form">
-    <h3>User Form</h3>
-    <form @submit.prevent="submitForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" v-model="formData.name" />
+    <h3 class="mb-4">User Form</h3>
+    <form @submit.prevent="submitForm" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" v-model="formData.name" class="form-control" required>
+        <div class="invalid-feedback">
+          Please enter your name.
+        </div>
+      </div>
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" v-model="formData.age" />
+      <div class="mb-3">
+        <label for="age" class="form-label">Age:</label>
+        <input type="number" id="age" v-model="formData.age" class="form-control" required>
+        <div class="invalid-feedback">
+          Please enter your age.
+        </div>
+      </div>
 
-      <label for="weight">Weight:</label>
-      <input type="number" id="weight" v-model="formData.weight" />
+      <div class="mb-3">
+        <label for="weight" class="form-label">Weight:</label>
+        <input type="number" id="weight" v-model="formData.weight" class="form-control" required>
+        <div class="invalid-feedback">
+          Please enter your weight.
+        </div>
+      </div>
 
-      <label for="height">Height:</label>
-      <input type="number" id="height" v-model="formData.height" />
+      <div class="mb-3">
+        <label for="height" class="form-label">Height:</label>
+        <input type="number" id="height" v-model="formData.height" class="form-control" required>
+        <div class="invalid-feedback">
+          Please enter your height.
+        </div>
+      </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <div class="user-details" v-if="userStore.users.length > 0">
-      <h3>User Details</h3>
-      <ul>
-        <li v-for="(user, index) in userStore.users" :key="index">
+    <div class="user-details mt-5" v-if="userStore.users.length > 0">
+      <h3 class="mb-4">User Details</h3>
+      <ul class="list-group">
+        <li v-for="(user, index) in userStore.users" :key="index" class="list-group-item">
           <strong>Name:</strong> {{ user.name }}<br>
           <strong>Age:</strong> {{ user.age }}<br>
           <strong>Weight:</strong> {{ user.weight }}<br>
           <strong>Height:</strong> {{ user.height }}<br>
           <strong>Progress:</strong> {{ user.progress.completedDays }} / {{ user.progress.totalDays }} days
-          <button @click="incrementUserProgress(index)">Increment Progress</button>
-          <button @click="editUser(index)">Edit</button>
-          <button @click="removeUser(index)">Remove</button>
+          <div class="mt-2">
+            <button class="btn btn-success btn-sm me-2" @click="incrementUserProgress(index)">Increment Progress</button>
+            <button class="btn btn-warning btn-sm me-2" @click="editUser(index)">Edit</button>
+            <button class="btn btn-danger btn-sm" @click="removeUser(index)">Remove</button>
+          </div>
         </li>
       </ul>
     </div>
