@@ -33,6 +33,14 @@ export const useUserStore = defineStore('user', {
         }
       }
     },
+    decrementProgress(index: number) {
+      if (index >= 0 && index < this.users.length) {
+        if (this.users[index].progress.completedDays > 0) {
+          this.users[index].progress.completedDays--;
+          this.saveUsers();
+        }
+      }
+    },
     addUser(name: string, age: number, weight: number, height: number) {
       this.users.push({
         name,

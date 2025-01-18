@@ -12,6 +12,13 @@
 import { defineComponent } from 'vue';
 import ArticleCard from '../components/ArticleCard.vue';
 
+export const articles = [
+  { title: 'Benefits of Cardio', summary: 'Learn about the top benefits of cardio workouts.' },
+  { title: 'Strength Training 101', summary: 'An introduction to strength training for beginners.' },
+  { title: 'Healthy Eating', summary: 'Tips and tricks for maintaining a healthy diet.' },
+  { title: 'Yoga for Flexibility', summary: 'How yoga can improve your flexibility and overall health.' }
+];
+
 export default defineComponent({
   components: { ArticleCard },
 });

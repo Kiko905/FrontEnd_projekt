@@ -48,6 +48,7 @@
           <strong>Progress:</strong> {{ user.progress.completedDays }} / {{ user.progress.totalDays }} days
           <div class="mt-2">
             <button class="btn btn-success btn-sm me-2" @click="incrementUserProgress(index)">Increment Progress</button>
+            <button class="btn btn-secondary btn-sm me-2" @click="decrementUserProgress(index)">Decrement Progress</button>
             <button class="btn btn-warning btn-sm me-2" @click="editUser(index)">Edit</button>
             <button class="btn btn-danger btn-sm" @click="removeUser(index)">Remove</button>
           </div>
@@ -88,6 +89,9 @@ export default defineComponent({
     },
     incrementUserProgress(index: number) {
       this.userStore.incrementProgress(index);
+    },
+    decrementUserProgress(index: number) {
+      this.userStore.decrementProgress(index);
     },
     editUser(index: number) {
       const user = this.userStore.users[index];
