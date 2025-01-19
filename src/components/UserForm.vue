@@ -41,16 +41,21 @@
       <h3 class="mb-4">User Details</h3>
       <ul class="list-group">
         <li v-for="(user, index) in userStore.users" :key="index" class="list-group-item">
-          <strong>Name:</strong> {{ user.name }}<br>
-          <strong>Age:</strong> {{ user.age }}<br>
-          <strong>Weight:</strong> {{ user.weight }}<br>
-          <strong>Height:</strong> {{ user.height }}<br>
-          <strong>Progress:</strong> {{ user.progress.completedDays }} / {{ user.progress.totalDays }} days
-          <div class="mt-2">
-            <button class="btn btn-success btn-sm me-2" @click="incrementUserProgress(index)">Increment Progress</button>
-            <button class="btn btn-secondary btn-sm me-2" @click="decrementUserProgress(index)">Decrement Progress</button>
-            <button class="btn btn-warning btn-sm me-2" @click="editUser(index)">Edit</button>
-            <button class="btn btn-danger btn-sm" @click="removeUser(index)">Remove</button>
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <strong>Name:</strong> {{ user.name }}<br>
+              <strong>Age:</strong> {{ user.age }}<br>
+              <strong>Weight:</strong> {{ user.weight }}<br>
+              <strong>Height:</strong> {{ user.height }}<br>
+              <strong>Progress:</strong> {{ user.progress.completedDays }} / {{ user.progress.totalDays }} days
+              <div class="mt-2">
+                <button class="btn btn-success btn-sm me-2" @click="incrementUserProgress(index)">Increment Progress</button>
+                <button class="btn btn-secondary btn-sm me-2" @click="decrementUserProgress(index)">Decrement Progress</button>
+                <button class="btn btn-warning btn-sm me-2" @click="editUser(index)">Edit</button>
+                <button class="btn btn-danger btn-sm" @click="removeUser(index)">Remove</button>
+              </div>
+            </div>
+            <TableView :completedDays="user.progress.completedDays" :totalDays="user.progress.totalDays" />
           </div>
         </li>
       </ul>
@@ -61,8 +66,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useUserStore } from '../stores/userStore';
+import TableView from './TableView.vue';
 
 export default defineComponent({
+  components: {
+    TableView,
+  },
   data() {
     return {
       userStore: useUserStore(),

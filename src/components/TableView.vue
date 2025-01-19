@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>Progress Table</h2>
-    <div v-if="userStore.users.length > 0">
-      <table>
+    <div v-if="totalDays > 0">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Day</th>
@@ -10,8 +10,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="day in totalDays" :key="day">
-            <td>Day {{ day }}</td>
+          <tr v-for="day in daysToShow" :key="day">
+            <td>{{ day }}</td>
             <td>{{ day <= completedDays ? 'Completed' : 'Pending' }}</td>
           </tr>
         </tbody>
@@ -24,22 +24,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useUserStore } from '../stores/userStore';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  data() {
-    return {
-      userStore: useUserStore(),
-    };
+  props: {
+    completedDays: {
+      type: Number,
+      required: true
+    },
+    totalDays: {
+      type: Number,
+      required: true
+    }
   },
   computed: {
-    completedDays() {
-      return this.userStore.users.length > 0 ? this.userStore.users[0].progress.completedDays : 0;
-    },
-    totalDays() {
-      return this.userStore.users.length > 0 ? this.userStore.users[0].progress.totalDays : 0;
-    },
-  },
+    daysToShow() {
+      return Array.from({ length: Math.min(5, this.totalDays) }, (_, i) => i + 1);
+    }
+  }
 });
 </script>
